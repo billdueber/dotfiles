@@ -20,6 +20,12 @@ function chruby_reload() {
   source /usr/local/brew/share/chruby/chruby.sh
 }
 
+if [[ ! -z `command -v chruby` ]]; then
+  chruby_reload
+  chruby $DEFAULT_RUBY
+fi
+
+
 # basic utils
 alias ls='/bin/ls -GFh'
 alias ll='ls -lhrt'
@@ -102,8 +108,7 @@ alias brewski='brew update && brew upgrade && brew upgrade brew-cask; brew clean
 
 # RUBY
 
-chruby_reload
-chruby $DEFAULT_RUBY
+
 alias bx='bundle exec'
 
 
