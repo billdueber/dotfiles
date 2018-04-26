@@ -23,7 +23,7 @@
 
   preb = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Rebasing from origin/$br; sleep 1.5;  git pull --rebase origin $br;  }; f"
 
-  diff = '! f() { if command -v diff-so-fancy; then pager="diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"; else pager=less;fi; git diff --word-diff --; }; f'
+  diff = '! f() { if [[ command -v diff-so-fancy ]] ; then pager="diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"; else pager=less;fi; git diff --word-diff --; }; f'
   
   dc = diff --cached
 
@@ -80,7 +80,7 @@
   excludesfile = /Users/dueberb/.gitignore_global
   editor = emacs
   quotepath = false
-  pager = "diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"
+  pager = "less --tabs=4 -RFX "
   autocrlf = input
 
 [diff-so-fancy]
