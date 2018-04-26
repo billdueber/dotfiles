@@ -24,13 +24,13 @@ function chruby_reload() {
 alias ls='/bin/ls -GFh'
 alias ll='ls -lhrt'
 
-alias l="/usr/share/vim/vim73/macros/less.sh"
+alias l=""
 alias df='df -h'
 alias top='/usr/bin/top -o cpu -R'
 
 # Better file viewing
 
-export LESSBIN=/usr/share/vim/vim80/macros/less.sh
+export LESSBIN="$(find /usr/share/vim/ -name less.sh | tail -1)"
 
 
 function x() {
