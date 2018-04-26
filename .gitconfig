@@ -22,8 +22,9 @@
   go = checkout
 
   preb = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Rebasing from origin/$br; sleep 1.5;  git pull --rebase origin $br;  }; f"
+
+  diff = '! f() { if command -v diff-so-fancy; then pager="diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"; else pager=less;fi; git diff --word-diff --; }; f'
   
-  diff = diff --word-diff
   dc = diff --cached
 
   tags = "! f() { git tag -n1 -l | sort -V; }; f"
@@ -79,8 +80,8 @@
   excludesfile = /Users/dueberb/.gitignore_global
   editor = emacs
   quotepath = false
-        pager = "diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"
-	autocrlf = input
+  pager = "diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"
+  autocrlf = input
 
 [diff-so-fancy]
   markEmptyLines = false
