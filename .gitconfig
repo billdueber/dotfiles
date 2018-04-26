@@ -79,7 +79,7 @@
   diff = diff --word-diff
   dc = diff --cached
 
-  tags = tag -n1 -l
+  tags = "! f() { git tag -n1 -l | sort -V }; f"
 
   list = ls-tree -r -t --name-only HEAD
   cleanup = gc --aggressive --prune
