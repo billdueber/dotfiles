@@ -39,6 +39,12 @@
 
   squash = "! f() { sha=\"HEAD~${1}\"; git rebase -i $sha; }; f"
 
+  rem = remote --verbose
+
+
+  
+
+
 [user]
 	name = Bill Dueber
 	email = bill@dueber.com
@@ -92,8 +98,6 @@
 [credential]
 	helper = osxkeychain
 
-  
-
 [grep]
 	lineNumber = true
 	heading = true
@@ -104,9 +108,12 @@
 	smudge = git-media-smudge %f
 [hub]
 	protocol = https
+
 [filter "lfs"]
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+
 [merge]
 	ff = false
+
