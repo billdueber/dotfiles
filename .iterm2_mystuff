@@ -1,0 +1,129 @@
+HOST=`hostname -s`
+if [[ $HOST == 'm-d25rw1q4gg7f' ]]; then
+  HOST=waffle
+fi
+
+
+#######################
+# iTerm
+######################
+
+# Set the titlebar text
+function set_titlebar_text() {
+    echo -ne "\033]0;${1}\007"
+}
+
+# Set the badge
+
+function set_iterm2_badge() {
+    str=$1
+    printf "\e]1337;SetBadgeFormat=%s\a" \
+      $(echo -n $str | base64)
+}
+
+
+
+#######################
+# git repo info
+######################
+
+# Find out stuff about git:
+# * are we in a git repo?
+# * what's the root dir?
+# * is it dirty?
+#
+# ...and then set variables to note these things
+
+function ingit {
+  [ -d .git ] || git rev-parse --git-dir > /dev/null 2>&1
+}
+
+
+function git_repo_rootdir() {
+ echo  `git rev-parse --show-toplevel`
+}
+
+function git_is_dirty {
+    [[ $(git diff --shortstat 2> /dev/null | tail -n1) != "" ]]
+}
+
+
+# Colors
+tput init
+RED=`tput setaf 1`
+GREEN=`tput setaf 2`
+COFF=`tput sgr0`
+
+
+function set_git_vars() {
+    defaultcolor="\e[0m"
+    if git_is_dirty; then
+	dirtystr='*';
+        dirtycolor=$RED
+    else
+	dirtystr='';
+        dirtycolor=$GREEN
+    fi
+
+    rawbranch=$(git rev-parse --abbrev-ref HEAD)
+    GIT_BRANCH="$rawbranch$dirtystr"
+    GIT_BRANCH_PROMPT_DISPLAY=" (${dirtycolor}${rawbranch}${COFF})"
+    GIT_ROOTDIR=`git_repo_rootdir`
+    GIT_REPO="$(basename $GIT_ROOTDIR)"
+    GIT_REPO_DIRTY="${GIT_REPO}$dirtystr"
+
+}
+
+function unset_git_vars() {
+  unset GIT_BRANCH
+  unset GIT_ROOTDIR
+  unset GIT_REPO
+  unset GIT_REPO_DIRTY
+  unset GIT_BRANCH_PROMPT_DISPLAY
+}
+
+
+# Set up what badges we want to display
+
+
+function ingit_badge() {
+    printf "(${HOST}) ${GIT_REPO} <$GIT_BRANCH>"
+}
+
+function nongit_badge() {
+  echo -n "(${HOST}) $(pwd)"    
+}
+
+
+# Set them
+function set_title_and_badge() {
+    if ingit; then
+	set_git_vars
+	set_iterm2_badge "$(ingit_badge)";
+	set_titlebar_text "${HOST} (${GIT_REPO_DIRTY})"
+    else
+	unset_git_vars
+	set_iterm2_badge "$(nongit_badge)";
+	set_titlebar_text $HOST
+    fi
+    echo "$GIT_BRANCH_PROMPT_DISPLAY"
+}
+
+
+
+#...and call it all in the prompt
+
+export PS1="\n\w\$(set_title_and_badge)\n> "
+
+
+function ssh {
+  command ssh $@;
+  set_title_and_badge
+}
+
+function slogin {
+  command slogin $@;
+  set_title_and_badge
+}
+
+set_title_and_badge

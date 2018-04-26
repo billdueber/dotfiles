@@ -1,0 +1,111 @@
+[user]
+	name = Bill Dueber
+	email = bill@dueber.com
+
+[github]
+  user = billdueber
+  token = 47c94aadeb9c8933ffc85cc7a4d3972c
+
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+
+[core]
+  excludesfile = /Users/dueberb/.gitignore_global
+  editor = emacs
+  quotepath = false
+        pager = "diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"
+	autocrlf = input
+
+[diff-so-fancy]
+  markEmptyLines = false
+
+[blame]
+  date = relative
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+
+[push]
+  default = simple
+
+[credential]
+	helper = osxkeychain
+
+[alias]
+  ds = diff --staged
+  st = status -sb
+  
+  ls =  log --pretty=format:\"%C(yellow)%h %C(blue)%ad %C(reset)%s%C(green) [%cn]%C(red)%d\" --decorate --date=short
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  ll  = log --all --graph --decorate --oneline --simplify-by-decoration
+
+  last = log -1
+  hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+  changed = log --pretty=format:\"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]\" --decorate --date=short --numstat
+
+  cl = clone
+  ci = commit
+  c  = commit
+  co = checkout
+  cob = checkout -b
+  new = checkout -b
+  track = "! f() { git checkout --track \"origin/$1\";  }; f"
+  br = branch
+  go = checkout
+
+  preb = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Rebasing from origin/$br; sleep 1.5;  git pull --rebase origin $br;  }; f"
+  
+  diff = diff --word-diff
+  dc = diff --cached
+
+  tags = tag -n1 -l
+
+  list = ls-tree -r -t --name-only HEAD
+  cleanup = gc --aggressive --prune
+
+  untrack = rm --cache --
+
+  when = log --follow --diff-filter=A
+
+  up = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Pushing to origin/$br; git push origin $br;  }; f"
+
+  squash = "! f() { sha=\"HEAD~${1}\"; git rebase -i $sha; }; f"
+  
+
+[grep]
+	lineNumber = true
+	heading = true
+	break = true
+	
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[hub]
+	protocol = https
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
+[merge]
+	ff = false
