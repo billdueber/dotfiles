@@ -21,7 +21,7 @@ function chruby_reload() {
 }
 
 DEFAULT_RUBY=2.4
-if ! [ -x "$(command -v chruby)" ]; then
+if hash chruby 2>/dev/null; then
   chruby_reload
   chruby $DEFAULT_RUBY
 fi
