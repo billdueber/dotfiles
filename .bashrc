@@ -1,6 +1,6 @@
 # bash stuff
 [ -f /usr/local/brew/etc/bash_completion ] && . /usr/local/brew/etc/bash_completion
-DEFAULT_RUBY=2.4
+
 
 # Brew paths for openssl
 export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
@@ -20,9 +20,17 @@ function chruby_reload() {
   source /usr/local/brew/share/chruby/chruby.sh
 }
 
-if [[ ! -z `command -v chruby` ]]; then
+DEFAULT_RUBY=2.4
+if ! [ -x "$(command -v chruby)" ]; then
   chruby_reload
   chruby $DEFAULT_RUBY
+fi
+
+
+# JAVA
+
+if [ "$(uname)" == "Darwin" ]; then
+    export JAVA_HOME=`/usr/libexec/java_home -v 1.8`
 fi
 
 
