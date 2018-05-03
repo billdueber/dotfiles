@@ -1,10 +1,23 @@
-# bash stuff
-[ -f /usr/local/brew/etc/bash_completion ] && . /usr/local/brew/etc/bash_completion
 
 
-# Brew paths for openssl
-export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
-export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
+# Check for brew to see if we're on one of my machines or
+# on a server and behave accordingly
+
+if [ -d /usr/local/brew ]; then
+    export MyMachine=`true`
+fi
+
+if $MyMachine; then
+    echo "On one of my machines"
+    source /usr/local/brew/etc/bash_completion
+    # Brew paths for openssl
+    export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
+    export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
+fi
+
+
+
+
 
 # Language
 export LC_ALL=en_US.UTF-8
@@ -21,7 +34,7 @@ function chruby_reload() {
 }
 
 DEFAULT_RUBY=2.4
-if hash chruby 2>/dev/null; then
+if $MyMachines; then 
   chruby_reload
   chruby $DEFAULT_RUBY
 fi
@@ -80,8 +93,6 @@ function runtest() {
 alias runtests=runtest
 
 
-# JAVA
-#export JAVA_HOME=/Users/dueberb/Library/Java/JavaVirtualMachines/1.8.0.jre/Home/
 
 #### Utils ###
 
@@ -111,7 +122,7 @@ function mnt_htapps() {
 }
 
 # HOMEBREW
-export PATH=/usr/local/brew/bin:$PATH
+export PATH=$HOME/bin:/usr/local/brew/bin:$PATH
 alias brewski='brew update && brew upgrade && brew upgrade brew-cask; brew cleanup; brew cask cleanup; brew doctor'
 
 # RUBY
