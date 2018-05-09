@@ -39,6 +39,8 @@ branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authorda
 
   preb = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Rebasing from origin/$br; sleep 1.5;  git pull --rebase origin $br;  }; f"
 
+  prebmaster = "! f() { echo Rebasing from origin/master; sleep 1.5;  git pull --rebase origin master;  }; f"
+
   diff = '! f() { if [[ command -v diff-so-fancy ]] ; then pager="diff-so-fancy --markEmptyLines=false| less --tabs=4 -RFX"; else pager=less;fi; git diff --word-diff --; }; f'
   
   dc = diff --cached
@@ -53,6 +55,7 @@ branches = for-each-ref --sort=-committerdate --format=\"%(color:blue)%(authorda
   when = log --follow --diff-filter=A
 
   up = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Pushing to origin/$br; git push origin $br;  }; f"
+  fup = "! f() { br=$( git rev-parse --abbrev-ref HEAD); echo Force pushing to origin/$br; sleep 2; git push -f origin $br;  }; f"
 
   squash = "! f() { sha=\"HEAD~${1}\"; git rebase --autosquash -i $sha; }; f"
 
