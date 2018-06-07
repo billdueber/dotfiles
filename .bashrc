@@ -1,23 +1,3 @@
-
-
-# Check for brew to see if we're on one of my machines or
-# on a server and behave accordingly
-
-if [ -d /usr/local/brew ]; then
-    export MyMachine=`true`
-fi
-
-if $MyMachine; then
-    source /usr/local/brew/etc/bash_completion
-    ### Brew paths for openssl
-    export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
-    export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
-fi
-
-
-
-
-
 # Language
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -33,10 +13,26 @@ function chruby_reload() {
 }
 
 DEFAULT_RUBY=2.4
-if $MyMachines; then 
-  chruby_reload
-  chruby $DEFAULT_RUBY
+
+
+# Check for brew to see if we're on one of my machines or
+# on a server and behave accordingly
+
+if [ -d /usr/local/brew ]; then
+    MyMachine='true'
+else
+    MyMachine='false'
 fi
+
+if [ $MyMachine == 'true' ]; then
+    source /usr/local/brew/etc/bash_completion
+    ### Brew paths for openssl
+    export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
+    export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
+    chruby_reload
+    chruby $DEFAULT_RUBY
+fi
+
 
 
 # JAVA
