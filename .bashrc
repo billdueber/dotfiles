@@ -9,7 +9,7 @@ fi
 
 if $MyMachine; then
     source /usr/local/brew/etc/bash_completion
-    # Brew paths for openssl
+    ### Brew paths for openssl
     export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
     export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
 fi
