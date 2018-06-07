@@ -8,7 +8,6 @@ if [ -d /usr/local/brew ]; then
 fi
 
 if $MyMachine; then
-    echo "On one of my machines"
     source /usr/local/brew/etc/bash_completion
     # Brew paths for openssl
     export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
