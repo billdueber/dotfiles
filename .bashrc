@@ -126,12 +126,11 @@ alias brewski='brew update && brew upgrade && brew upgrade brew-cask; brew clean
 alias bx='bundle exec'
 
 
-
-
-
 # git
 alias tags="git for-each-ref refs/tags --sort=authordate --format='%(refname:short)'"
 #test -f ~/.git-completion.bash && . $_
+
+
 
 
 
