@@ -3,6 +3,11 @@ if [ -f /etc/profile ]; then
 fi
 
 
+function itermify() {
+  test -e ".iterm2_shell_integration.bash" && source ".iterm2_shell_integration.bash" 
+  test -e ".iterm2_mystuff" && source ".iterm2_mystuff"
+}
+
 test -e ".bashrc" && source "${HOME}/.bashrc"
 
 if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then

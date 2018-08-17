@@ -35,7 +35,7 @@ if [ $MyMachine == 'true' ]; then
     chruby $DEFAULT_RUBY
 
     # Forward on the TERM variable
-    LC_TERM=$TERM
+    LC_TERM=$TERM_PROGRAM
 fi
 
 
