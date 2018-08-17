@@ -31,6 +31,9 @@ if [ $MyMachine == 'true' ]; then
     export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
     chruby_reload
     chruby $DEFAULT_RUBY
+
+    # Forward on the TERM variable
+    LC_TERM=$TERM
 fi
 
 

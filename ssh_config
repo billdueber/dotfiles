@@ -1,0 +1,4 @@
+Host *
+  ControlPath ~/.ssh/cm/%r@%h:%p
+  Controlmaster auto
+  SendEnv LC_TERM

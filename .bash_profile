@@ -10,6 +10,10 @@ if [[ $TERM_PROGRAM == 'iTerm.app' ]]; then
   test -e ".iterm2_mystuff" && source ".iterm2_mystuff"
 fi
 
+if [[ $LC_TERM == 'iTerm.app' ]]; then
+  test -e "${HOME}/.iterm2_mystuff" && source "${HOME}/.iterm2_mystuff"
+fi
+
 
 
 
