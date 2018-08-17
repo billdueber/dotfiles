@@ -14,6 +14,8 @@ function chruby_reload() {
 
 DEFAULT_RUBY=2.4
 
+# AFs
+alias afs="kinit;aklog"
 
 # Check for brew to see if we're on one of my machines or
 # on a server and behave accordingly
