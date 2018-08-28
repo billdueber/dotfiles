@@ -3,6 +3,10 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
+# Edit Tom's Crontab on HT servers
+alias toms_crontab="sudo -u tburtonw crontab -e"
+
+
 # EDITOR
 export EDITOR="emacs"
 export VISUAL=$EDITOR
