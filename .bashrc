@@ -16,7 +16,7 @@ function chruby_reload() {
   source /usr/local/brew/share/chruby/chruby.sh
 }
 
-DEFAULT_RUBY=2.4
+DEFAULT_RUBY=2.5
 
 # AFs
 alias afs="kinit;aklog"
