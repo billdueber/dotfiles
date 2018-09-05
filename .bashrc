@@ -3,6 +3,10 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
+# Edit Tom's Crontab on HT servers
+alias toms_crontab="sudo -u tburtonw crontab -e"
+
+
 # EDITOR
 export EDITOR="emacs"
 export VISUAL=$EDITOR
@@ -14,6 +18,8 @@ function chruby_reload() {
 
 DEFAULT_RUBY=2.4
 
+# AFs
+alias afs="kinit;aklog"
 
 # Check for brew to see if we're on one of my machines or
 # on a server and behave accordingly
@@ -31,6 +37,9 @@ if [ $MyMachine == 'true' ]; then
     export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
     chruby_reload
     chruby $DEFAULT_RUBY
+
+    # Forward on the TERM variable
+    LC_TERM=$TERM_PROGRAM
 fi
 
 
@@ -126,12 +135,11 @@ alias brewski='brew update && brew upgrade && brew upgrade brew-cask; brew clean
 alias bx='bundle exec'
 
 
-
-
-
 # git
 alias tags="git for-each-ref refs/tags --sort=authordate --format='%(refname:short)'"
 #test -f ~/.git-completion.bash && . $_
+
+
 
 
 
