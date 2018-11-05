@@ -53,7 +53,7 @@ fi
 
 # basic utils
 alias ls='/bin/ls -GFh'
-alias ll='ls -lhrt'
+alias ll='/bin/ls -Flhrt'
 
 alias l=""
 alias df='df -h'
