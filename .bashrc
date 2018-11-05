@@ -3,6 +3,10 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 
+# Edit Tom's Crontab on HT servers
+alias toms_crontab="sudo -u tburtonw crontab -e"
+
+
 # EDITOR
 export EDITOR="emacs"
 export VISUAL=$EDITOR
@@ -12,7 +16,7 @@ function chruby_reload() {
   source /usr/local/brew/share/chruby/chruby.sh
 }
 
-DEFAULT_RUBY=2.4
+DEFAULT_RUBY=2.5
 
 # AFs
 alias afs="kinit;aklog"
