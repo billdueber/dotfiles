@@ -1,3 +1,5 @@
+source /usr/local/brew/opt/asdf/asdf.sh
+
 # Language
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -11,12 +13,6 @@ alias toms_crontab="sudo -u tburtonw crontab -e"
 export EDITOR="emacs"
 export VISUAL=$EDITOR
 
-# CHRUBY
-function chruby_reload() {
-  source /usr/local/brew/share/chruby/chruby.sh
-}
-
-DEFAULT_RUBY=2.5
 
 # AFs
 alias afs="kinit;aklog"
@@ -35,8 +31,7 @@ if [ $MyMachine == 'true' ]; then
     ### Brew paths for openssl
     export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
     export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
-    chruby_reload
-    chruby $DEFAULT_RUBY
+    eval "$(rbenv init -)"
 
     # Forward on the TERM variable
     LC_TERM=$TERM_PROGRAM
@@ -140,6 +135,7 @@ alias tags="git for-each-ref refs/tags --sort=authordate --format='%(refname:sho
 #test -f ~/.git-completion.bash && . $_
 
 
+test -f /usr/local/brew/opt/asdf/asdf.sh && source /usr/local/brew/opt/asdf/asdf.sh
 
 
 
