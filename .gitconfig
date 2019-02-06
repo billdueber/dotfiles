@@ -10,7 +10,7 @@
 
 #### Taken from https://github.com/thoughtbot/dotfiles ###
 
-br = "! f() { git for-each-ref --sort=committerdate refs/remotes refs/heads/ --format='%(color:green)%(committerdate:short)%(color:reset) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname)'; }; f | sort -r"
+br = "! f() { git for-each-ref --sort=committerdate refs/remotes refs/heads/ --format='%(color:green)%(committerdate:short)%(color:reset) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - %(authorname)'; }; f | grep -v 'origin/HEAD' | grep -v 'origin/master' | sort -r"
 
 
 ########
