@@ -1,5 +1,3 @@
-source /usr/local/brew/opt/asdf/asdf.sh
-
 # Language
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -135,7 +133,8 @@ alias tags="git for-each-ref refs/tags --sort=authordate --format='%(refname:sho
 #test -f ~/.git-completion.bash && . $_
 
 
-test -f /usr/local/brew/opt/asdf/asdf.sh && source /usr/local/brew/opt/asdf/asdf.sh
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 
 
