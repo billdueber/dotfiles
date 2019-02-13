@@ -29,7 +29,6 @@ if [ $MyMachine == 'true' ]; then
     ### Brew paths for openssl
     export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
     export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
-    eval "$(rbenv init -)"
 
     # Forward on the TERM variable
     LC_TERM=$TERM_PROGRAM
