@@ -1,5 +1,8 @@
 #!/bin/bash
 
+test -e $TERM && return
+
+
 # -- BEGIN ITERM2 CUSTOMIZATIONS --
 if [[ "$TERM" != screen && "$ITERM_SHELL_INTEGRATION_INSTALLED" = "" && "$-" == *i* ]]; then
 ITERM_SHELL_INTEGRATION_INSTALLED=Yes
