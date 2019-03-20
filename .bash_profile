@@ -21,9 +21,7 @@ if [[ $LC_TERM == 'iTerm.app' ]]; then
   test -f "${HOME}/.iterm2_mystuff" && source "${HOME}/.iterm2_mystuff"
 fi
 
-=======
 itermify
->>>>>>> Make TERM problems go away
 
 
 
