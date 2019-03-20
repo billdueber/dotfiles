@@ -132,8 +132,8 @@ alias tags="git for-each-ref refs/tags --sort=authordate --format='%(refname:sho
 #test -f ~/.git-completion.bash && . $_
 
 
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
+[ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
+[ -f $HOME/.asdf/completions/asdf.bash ] && source $HOME/.asdf/completions/asdf.bash
 
 
 

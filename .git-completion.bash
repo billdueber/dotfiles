@@ -121,7 +121,7 @@ __git_reassemble_comp_words_by_ref()
 	fi
 	# List of word completion separators has shrunk;
 	# re-assemble words to complete.
-	for ((i=0, j=0; i < ${#COMP_WORDS[@]}; i++, j++)); do
+	for ((local i=0, local j=0; i < ${#COMP_WORDS[@]}; i++, j++)); do
 		# Append each nonempty word consisting of just
 		# word separator characters to the current word.
 		first=t
@@ -187,7 +187,8 @@ fi
 
 __gitcompappend ()
 {
-	local x i=${#COMPREPLY[@]}
+    local x
+    local i=${#COMPREPLY[@]}
 	for x in $1; do
 		if [[ "$x" == "$3"* ]]; then
 			COMPREPLY[i++]="$2$x$4"
@@ -216,7 +217,9 @@ __gitcomp ()
 	--*=)
 		;;
 	*)
-		local c i=0 IFS=$' \t\n'
+	    local c
+	    local i=0
+	    local IFS=$' \t\n'
 		for c in $1; do
 			c="$c${4-}"
 			if [[ $c == "$cur_"* ]]; then
@@ -539,7 +542,7 @@ __git_complete_remote_or_refspec ()
 		((c++))
 	fi
 	while [ $c -lt $cword ]; do
-		i="${words[c]}"
+		local i="${words[c]}"
 		case "$i" in
 		--mirror) [ "$cmd" = "push" ] && no_complete_refspec=1 ;;
 		--all)
@@ -874,7 +877,7 @@ __git_count_arguments ()
 	local word i c=0
 
 	# Skip "git" (first argument)
-	for ((i=1; i < ${#words[@]}; i++)); do
+	for ((local i=1; i < ${#words[@]}; i++)); do
 		word="${words[i]}"
 
 		case "$word" in
@@ -1007,7 +1010,7 @@ _git_branch ()
 	local i c=1 only_local_ref="n" has_r="n"
 
 	while [ $c -lt $cword ]; do
-		i="${words[c]}"
+		local i="${words[c]}"
 		case "$i" in
 		-d|--delete|-m|--move)	only_local_ref="y" ;;
 		-r|--remotes)		has_r="y" ;;
@@ -2671,7 +2674,7 @@ _git_tag ()
 {
 	local i c=1 f=0
 	while [ $c -lt $cword ]; do
-		i="${words[c]}"
+		local i="${words[c]}"
 		case "$i" in
 		-d|-v)
 			__gitcomp_nl "$(__git_tags)"
@@ -2744,7 +2747,7 @@ __git_main ()
 	local i c=1 command __git_dir
 
 	while [ $c -lt $cword ]; do
-		i="${words[c]}"
+		local i="${words[c]}"
 		case "$i" in
 		--git-dir=*) __git_dir="${i#--git-dir=}" ;;
 		--git-dir)   ((c++)) ; __git_dir="${words[c]}" ;;

@@ -4,8 +4,8 @@ fi
 
 
 function itermify() {
-  test -f ".iterm2_shell_integration.bash" && source ".iterm2_shell_integration.bash" 
-  test -f ".iterm2_mystuff" && source ".iterm2_mystuff"
+  [ ! -z $TERM ] && test -e ".iterm2_shell_integration.bash" && source ".iterm2_shell_integration.bash" 
+  [ ! -z $TERM ] &&  test -e ".iterm2_mystuff" && source ".iterm2_mystuff"
 }
 
 test -f ".bashrc" && source "${HOME}/.bashrc"
@@ -21,6 +21,9 @@ if [[ $LC_TERM == 'iTerm.app' ]]; then
   test -f "${HOME}/.iterm2_mystuff" && source "${HOME}/.iterm2_mystuff"
 fi
 
+=======
+itermify
+>>>>>>> Make TERM problems go away
 
 
 
