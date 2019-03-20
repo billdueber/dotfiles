@@ -13,6 +13,12 @@ function set_titlebar_text() {
     echo -ne "\033]0;${1}\007"
 }
 
+# Set the background color
+function set_background_color() {
+  echo -ne "\033]Ph${1}\033[\\"
+}
+  
+
 # Set the badge
 
 function set_iterm2_badge() {
@@ -94,18 +100,35 @@ function nongit_badge() {
   echo -n "(${HOST}) $(pwd)"    
 }
 
+function window_title() {
+  ITERM_TITLE="$*"
+}
 
+
+# Custom colors to set?
+function git_color_background {
+  if ingit; then
+    color=`git config --get colors.background`
+    if [ ! -z $color ]; then
+      set_background_color $color
+    fi
+  else
+    set_background_color 000000
+  fi
+}
+    
 # Set them
 function set_title_and_badge() {
     if ingit; then
 	set_git_vars
 	set_iterm2_badge "$(ingit_badge)";
-	set_titlebar_text "${HOST} (${GIT_REPO_DIRTY})"
+	set_titlebar_text "${HOST} ${ITERM_TITLE} (${GIT_REPO_DIRTY})"
     else
 	unset_git_vars
 	set_iterm2_badge "$(nongit_badge)";
-	set_titlebar_text $HOST
+	set_titlebar_text "$HOST $ITERM_TITLE"
     fi
+    git_color_background
     echo "$GIT_BRANCH_PROMPT_DISPLAY"
 }
 
