@@ -15,7 +15,18 @@ function set_titlebar_text() {
 
 # Set the background color
 function set_background_color() {
-  echo -ne "\033]Ph${1}\033[\\"
+  echo -n -e "\033]Ph${1}\033[\\"
+}
+
+function set_text_color() {
+  echo -n -e "\033]Pg${1}\033[\\"
+}
+
+# Go all HT on this window
+
+function htify() {
+  set_text_color 444444
+  set_background_color FFA500
 }
   
 
@@ -112,8 +123,6 @@ function git_color_background {
     if [ ! -z $color ]; then
       set_background_color $color
     fi
-  else
-    set_background_color 000000
   fi
 }
     
