@@ -6,6 +6,13 @@ export LANGUAGE=en_US.UTF-8
 # Edit Tom's Crontab on HT servers
 alias toms_crontab="sudo -u tburtonw crontab -e"
 
+alias my="mysql -h mysql-sdr -p ht"
+
+# SDR locations
+
+export SDRROOT=/htapps/babel
+export SDRDATAROOT=/sdr1
+
 
 # EDITOR
 export EDITOR="emacs"
