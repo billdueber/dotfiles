@@ -44,7 +44,7 @@ br = "! f() { git for-each-ref --sort=committerdate refs/remotes refs/heads/ --f
   
   dc = diff --cached
 
-  tags = "! f() { git tag -n1 -l | sort -V; }; f"
+  tags = "! f() { git tag -n1 -l --sort=taggerdate; }; f"
 
   list = ls-tree -r -t --name-only HEAD
   cleanup = gc --aggressive --prune

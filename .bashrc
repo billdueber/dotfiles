@@ -5,7 +5,15 @@ export LANGUAGE=en_US.UTF-8
 
 # Edit Tom's Crontab on HT servers
 alias toms_crontab="sudo -u tburtonw crontab -e"
-alias my="mysql -h mysql-sdr -p ht"
+
+# Login to servers
+alias 001="slogin macc-ht-ingest-001"
+alias b1="slogin beeftea-1"
+alias b2="slogin beeftea-2"
+alias grog="slogin grog"
+
+alias myrw="mysql -h mysql-sdr -p ht"
+alias my="mysql -h mysql-sdr-ro -p ht"
 
 # SDR locations
 export SDRROOT=/htapps/babel
@@ -75,6 +83,7 @@ if exists bat; then
   alias less=bat
 fi
 
+
 #### Utils ###
 
 function chrome() {
@@ -86,10 +95,11 @@ function chrome() {
 alias bx='bundle exec'
 RUBY_CONFIGURE_OPTS=--with-readline-dir=`brew --prefix readline`
 
+# git
+alias tags="git tag -n1 -l --sort=taggerdate"
 
 [ -f $HOME/.asdf/asdf.sh ] && source $HOME/.asdf/asdf.sh
 [ -f $HOME/.asdf/completions/asdf.bash ] && source $HOME/.asdf/completions/asdf.bash
-
 [ -f /usr/local/brew/etc/bash_completion.d ] && source /usr/local/brew/etc/bash_completion.d 
 
 if exists starship; then
