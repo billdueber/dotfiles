@@ -57,6 +57,7 @@ fi
 
 if [ $MyMachine == 'true' ]; then
     source /usr/local/brew/etc/bash_completion
+    export RUBY_CONFIGURE_OPTS=--with-readline-dir=`brew --prefix readline`
     ### Brew paths for openssl
     export LD_LIBRARY_PATH=/usr/local/brew/opt/openssl/lib:"${LD_LIBRARY_PATH}"
     export CPATH=/usr/local/brew/opt/openssl/include:"${CPATH}"
@@ -93,7 +94,6 @@ function chrome() {
 # RUBY
 
 alias bx='bundle exec'
-RUBY_CONFIGURE_OPTS=--with-readline-dir=`brew --prefix readline`
 
 # git
 alias tags="git tag -n1 -l --sort=taggerdate"
