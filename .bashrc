@@ -11,6 +11,11 @@ alias my="mysql -h mysql-sdr -p ht"
 export SDRROOT=/htapps/babel
 export SDRDATAROOT=/sdr1
 
+# PATH
+export PATH=$HOME/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/brew/bin:$PATH
+alias brewski='brew update && brew upgrade && brew upgrade brew-cask; brew cleanup; brew cask cleanup; brew doctor'
+
+
 function exists () {
  command -v $1 >/dev/null 2>&1
 }
@@ -26,6 +31,8 @@ fi
 # EDITOR
 alias emacs=$EDITOR
 export VISUAL=$EDITOR
+
+
 
 
 # AFs
@@ -50,7 +57,7 @@ fi
 
 # basic utils
 
-if [ -f /usr/local/brew/bin/exa ]; then
+if exists exa ; then
   alias ls='exa -Fh'
   alias ll='ls -F -l -h -r -snew '
 else
@@ -64,18 +71,15 @@ alias top='/usr/bin/top -o cpu -R'
 
 # Better file viewing
 
-alias less=bat
+if exists bat; then
+  alias less=bat
+fi
 
 #### Utils ###
 
 function chrome() {
    open -a "Google Chrome" "$1"
 }
-
-
-# PATH
-export PATH=$HOME/bin:$HOME/.asdf/bin:$HOME/.asdf/shims:/usr/local/brew/bin:$PATH
-alias brewski='brew update && brew upgrade && brew upgrade brew-cask; brew cleanup; brew cask cleanup; brew doctor'
 
 # RUBY
 
@@ -88,8 +92,17 @@ RUBY_CONFIGURE_OPTS=--with-readline-dir=`brew --prefix readline`
 
 [ -f /usr/local/brew/etc/bash_completion.d ] && source /usr/local/brew/etc/bash_completion.d 
 
-eval "$(/usr/local/brew/bin/starship init bash)"
-eval "$(jump shell bash)"
+if exists starship; then
+  ss=`command -v starship`
+  source <("$ss" init bash --print-full-init)
+fi
+
+if exists jump; then
+  eval "$(jump shell bash)"
+  alias j=jump
+fi
+
+
 
 
 
