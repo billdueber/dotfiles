@@ -113,10 +113,4 @@ if exists jump; then
 fi
 
 
-if command -v starship; then
-  ss=`command -v starship`
-  source <("$ss" init bash --print-full-init)
-fi
-
-
 
