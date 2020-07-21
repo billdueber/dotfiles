@@ -1,0 +1,34 @@
+[git_status]
+
+prefix = ""
+suffix = ""
+
+conflicted = "🏳"
+
+staged.value = " +"
+staged.style = "green"
+staged_count.enabled = true
+staged_count.style = "green"
+
+deleted.value = " -"
+deleted.style = "fg:red"
+deleted_count.enabled = true
+deleted_count.style = "fg:red"
+
+modified.value = " Δ"
+modified.style = "fg:green"
+modified_count.enabled = true
+modified_count.style = "fg:green"
+
+untracked.value = " "
+untracked_count.enabled = true
+untracked_count.style = "underline"
+
+renamed.value = " ±"
+renamed.style = "fg:yellow"
+renamed_count.enabled = true
+renamed_count.style = "fg:yellow"
+
+[ruby]
+
+disabled = true
