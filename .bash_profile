@@ -11,7 +11,7 @@ function itermify() {
 test -f ".bashrc" && source "${HOME}/.bashrc"
 
 
-itermify
+# itermify
 
 
 
