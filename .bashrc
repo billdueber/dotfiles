@@ -113,4 +113,34 @@ if exists jump; then
 fi
 
 
+## SSH
+
+function tunnel() {
+
+  machine=$1
+  remote_port=$2
+  intermediary=$3
+  local_port=$4
+
+  if [ -z $machine ]; then
+     echo "Open a tunnel to another machine"
+     echo "  tunnel server remote_port [intermediary] [local_port]"
+     echo
+     echo "By default, local_port == remote_port and intermediary == server"
+     echo
+     return
+  fi
+
+  if [ -z $local_port ]; then
+     local_port=$remote_port
+  fi
+
+  if [ -z $intermediary ]; then
+    intermediary=$machine
+  fi
+
+  ssh -L "${local_port}:${machine}:${remote_port}" -f -N $intermediary
+}
+
+
 
